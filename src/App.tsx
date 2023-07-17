@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className="w-screen h-screen overflow-auto ">
-      <div className='border-8 scrollbar-hide' style={{ width: '3978px', height: '3978px', backgroundImage: `url(${mainImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+      <div className='border-8 scrollbar-hide' style={{ width: '1989px', height: '1989px', backgroundImage: `url(${mainImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
         
       </div>
     </div>
