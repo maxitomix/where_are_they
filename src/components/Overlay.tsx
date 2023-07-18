@@ -7,7 +7,7 @@ export default function Overlay() {
  
   return (
 
-    <div className='backdrop-blur-sm'>
+    <div className='backdrop-blur-sm fixed'>
       <NavBar/>
     </div>
 
