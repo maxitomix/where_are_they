@@ -1,0 +1,44 @@
+{
+  "scores": [
+    {
+      "username": "user1",
+      "time": "2023-07-18T00:01:00Z"
+    },
+    {
+      "username": "user2",
+      "time": "2023-07-18T00:02:00Z"
+    },
+    {
+      "username": "user3",
+      "time": "2023-07-18T00:03:00Z"
+    },
+    {
+      "username": "user4",
+      "time": "2023-07-18T00:04:00Z"
+    },
+    {
+      "username": "user5",
+      "time": "2023-07-18T00:05:00Z"
+    },
+    {
+      "username": "user6",
+      "time": "2023-07-18T00:01:30Z"
+    },
+    {
+      "username": "user7",
+      "time": "2023-07-18T00:02:30Z"
+    },
+    {
+      "username": "user8",
+      "time": "2023-07-18T00:03:30Z"
+    },
+    {
+      "username": "user9",
+      "time": "2023-07-18T00:04:30Z"
+    },
+    {
+      "username": "user10",
+      "time": "2023-07-18T00:05:30Z"
+    }
+  ]
+}
