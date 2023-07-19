@@ -12,7 +12,7 @@ export default function Overlay() {
 
   // Function to toggle isPlaying state
   const toggleIsPlaying = () => {
-    setIsPlaying(!isPlaying);
+    setIsPlaying(true);
   }
 
   const restartGame = () => {
