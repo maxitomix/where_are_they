@@ -1,0 +1,26 @@
+{
+  "correctPosition": [
+    {
+      "image": "find1",
+      "xMin": "1478",
+      "xMax": "1674",
+      "yMin": "1014",
+      "yMax": "1284"
+    },
+    {
+      "image": "find2",
+      "xMin": "387",
+      "xMax": "497",
+      "yMin": "1133",
+      "yMax": "1342"
+    },
+    {
+      "image": "find3",
+      "xMin": "1717",
+      "xMax": "1857",
+      "yMin": "1112",
+      "yMax": "1116"
+    }
+
+  ]
+}

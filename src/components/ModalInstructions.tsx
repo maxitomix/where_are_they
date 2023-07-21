@@ -3,13 +3,17 @@ import find2 from '../assets/find2.jpg';
 import find3 from '../assets/find3.jpg';
 
 
-export default function Modal({ onClose }) {
+export default function ModalInstructions({ onClose, resetClickPosition }) {
 
-
+  const handleContinue = (e) => {
+    e.stopPropagation();
+    onClose();
+    resetClickPosition();
+  }
  
   return (
     <>
-      <div className="flex gap-2 mr-4 h-screen justify-center"> 
+      <div className="flex gap-2 mr-4 h-screen justify-center" > 
           <div className="flex  self-center justify-center min-h-screen">
            
             <div className="bg-white p-4 rounded shadow text-center absolute top-60">
@@ -30,7 +34,7 @@ export default function Modal({ onClose }) {
 
               <button 
               className="bg-red-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded m-4" 
-              onClick={onClose}>Start Game
+              onClick={handleContinue}>Start Game
               </button>
 
             </div>
