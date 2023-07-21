@@ -1,19 +1,45 @@
 import HighScores from "./Highscores";
+import Modal from "./Modal";
 import NavBar from "./NavBar";
-import PlayGame from "./PlayGame";
+import PlayGameButton from "./PlayGameButton";
+import { useState } from "react";
 
 
 
 export default function Overlay() {
 
+  // Create a piece of state to track whether the game is being played
+  const [isPlaying, setIsPlaying] = useState(false);
 
+// modal with instructions
+  const [showModal, setShowModal] = useState(false); 
+
+  // timer
+  const [startTimer, setStartTimer] = useState(false);
+
+  // Function to toggle isPlaying state
+  const toggleIsPlaying = () => {
+    setIsPlaying(true);
+    setShowModal(true); 
+  }
+
+  const restartGame = () => {
+    setIsPlaying(false);
+    setStartTimer(false)
+  }
+
+  const closeModalAndStartTimer = () => {
+    setShowModal(false); 
+    setStartTimer(true)
+  }
  
   return (
 
-    <div className='flex flex-col w-screen h-screen backdrop-blur-sm fixed top-0 left-0'>
-      <NavBar/>
-      <HighScores/>
-      <PlayGame/>
+    <div className={`flex flex-col w-screen backdrop-blur-sm fixed top-0 left-0 ${isPlaying ? '' : 'h-screen'}`}>
+      <NavBar isPlaying={isPlaying} onLogoClick={restartGame} startTimer={startTimer}/>
+      {!isPlaying && <HighScores />}
+      {!isPlaying && <PlayGameButton onPlayClick={toggleIsPlaying}/>}
+      {showModal && <Modal onClose={closeModalAndStartTimer} />}
     </div>
 
   );

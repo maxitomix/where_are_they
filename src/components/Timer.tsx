@@ -1,0 +1,27 @@
+import  { useState, useEffect } from 'react';
+
+export default function Timer({ startTimer}) {
+  const [seconds, setSeconds] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+
+  useEffect(() => {
+    if (startTimer) {
+      const interval = setInterval(() => {
+        setSeconds((seconds) => {
+          if (seconds >= 59) {
+            setMinutes((minutes) => minutes + 1);
+            return 0;
+          } else {
+            return seconds + 1;
+          }
+        });
+      }, 1000);
+  
+      return () => clearInterval(interval);
+    }
+  }, [startTimer]);
+
+  return (
+    <div className="flex ml-auto mt-0 place-self-center">Time: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}</div>
+  );
+}
