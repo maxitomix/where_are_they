@@ -26,7 +26,9 @@ export default function NavBar({onLogoClick, isPlaying}) {
         <div className="mr-auto ml-auto mt-0 place-self-center">timer</div>
         <Roster />
         </>
+
         :
+        
         <img className={`object-scale-down h-12 sm:h-16 place-self-center `} src={userIcon} alt="searchIcon" />
        }
 
