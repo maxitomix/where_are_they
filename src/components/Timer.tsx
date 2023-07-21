@@ -22,6 +22,6 @@ export default function Timer({ startTimer}) {
   }, [startTimer]);
 
   return (
-    <div className="flex ml-auto mt-0 place-self-center">Time: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}</div>
+    <div className="flex ml-auto mr-auto  mt-0 p-0 place-self-center text-3xl text-pink-500  bg-pink-200 bg-opacity-30 rounded font-black">Time: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}</div>
   );
 }

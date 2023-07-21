@@ -11,10 +11,10 @@ export default function NavBar({onLogoClick, isPlaying, startTimer}) {
     <>
     <div className='flex sm:mt-4 justify-between'>
 
-        <img className='  sm:h-16 sm:w-16 place-self-center' src={searchIcon} alt="searchIcon" onClick={onLogoClick}/>
+        <img className='  h-16 w-16 sm:h-16 sm:w-16 place-self-center' src={searchIcon} alt="searchIcon" onClick={onLogoClick}/>
 
         {isPlaying ? 
-        ' '
+         <Timer startTimer={startTimer} />
         :
         <h1 className={` mx-auto place-self-center  text-pink-500 font text-sm sm:text-3xl font-black bg-pink-100 bg-opacity-75 px-5 py-1 rounded-full shadow-lg`}
         >WHERE ARE THEY??</h1>
@@ -24,7 +24,7 @@ export default function NavBar({onLogoClick, isPlaying, startTimer}) {
 
         {isPlaying ? 
         <>
-        <Timer startTimer={startTimer} />
+       
         <Roster />
         </>
 
