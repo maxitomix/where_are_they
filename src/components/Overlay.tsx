@@ -14,6 +14,9 @@ export default function Overlay() {
 // modal with instructions
   const [showModal, setShowModal] = useState(false); 
 
+  // timer
+  const [startTimer, setStartTimer] = useState(false);
+
   // Function to toggle isPlaying state
   const toggleIsPlaying = () => {
     setIsPlaying(true);
@@ -22,17 +25,18 @@ export default function Overlay() {
 
   const restartGame = () => {
     setIsPlaying(false);
+    setStartTimer(false)
   }
 
   const closeModalAndStartTimer = () => {
     setShowModal(false); 
- 
+    setStartTimer(true)
   }
  
   return (
 
     <div className={`flex flex-col w-screen backdrop-blur-sm fixed top-0 left-0 ${isPlaying ? '' : 'h-screen'}`}>
-      <NavBar isPlaying={isPlaying} onLogoClick={restartGame}/>
+      <NavBar isPlaying={isPlaying} onLogoClick={restartGame} startTimer={startTimer}/>
       {!isPlaying && <HighScores />}
       {!isPlaying && <PlayGameButton onPlayClick={toggleIsPlaying}/>}
       {showModal && <Modal onClose={closeModalAndStartTimer} />}

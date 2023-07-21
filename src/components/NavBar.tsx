@@ -1,8 +1,9 @@
 import searchIcon from '../assets/search.png';
 import userIcon from '../assets/user.png';
 import Roster from './Roster';
+import Timer from './Timer';
 
-export default function NavBar({onLogoClick, isPlaying}) {
+export default function NavBar({onLogoClick, isPlaying, startTimer}) {
 
 
  
@@ -23,7 +24,7 @@ export default function NavBar({onLogoClick, isPlaying}) {
 
         {isPlaying ? 
         <>
-        <div className="mr-auto ml-auto mt-0 place-self-center">timer</div>
+        <Timer startTimer={startTimer} />
         <Roster />
         </>
 
