@@ -3,7 +3,15 @@ import userIcon from '../assets/user.png';
 import Roster from './Roster';
 import Timer from './Timer';
 
-export default function NavBar({onLogoClick, isPlaying, startTimer}) {
+
+type NavBarProps = {
+  onLogoClick: () => void;
+  isPlaying:boolean;
+  startTimer: boolean;
+  
+};
+
+export default function NavBar({onLogoClick, isPlaying, startTimer}:NavBarProps) {
 
 
  

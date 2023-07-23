@@ -3,7 +3,7 @@ import scoresData from '../data/scoresTable.json';
 
 export default function ReadScoresData() {
 
-  const formatTime = (time) => {
+  const formatTime = (time: string) => {
     const date = new Date(time);
     const minutes = date.getMinutes().toString().padStart(2, '0');
     const seconds = date.getSeconds().toString().padStart(2, '0');

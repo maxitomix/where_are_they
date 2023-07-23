@@ -5,9 +5,13 @@ import NavBar from "./NavBar";
 import PlayGameButton from "./PlayGameButton";
 import { useState, useEffect } from "react";
 
+type OverlayProps = {
+  resetClickPosition: () => void;
+  clickPosition: { x: number, y: number } |null| undefined;
+};
 
 
-export default function Overlay({clickPosition, resetClickPosition}) {
+export default function Overlay({clickPosition, resetClickPosition}:OverlayProps) {
 
   // Create a piece of state to track whether the game is being played
   const [isPlaying, setIsPlaying] = useState(false);

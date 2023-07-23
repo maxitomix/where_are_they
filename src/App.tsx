@@ -9,13 +9,15 @@ import { useState } from "react";
 
 function App() {
 
-  const [clickPosition, setClickPosition] = useState();
+  type Position = { x: number, y: number } | undefined | null;
 
-  // console.log(app)
+  const [clickPosition, setClickPosition] = useState<Position>();
 
-  const backgroundRef = useRef(null);
+  console.log(app)
 
-  const handleBackGroundClick = (event) => {
+  const backgroundRef = useRef<HTMLDivElement | null>(null);
+
+  const handleBackGroundClick = (event: React.MouseEvent<HTMLDivElement>) => {
       if (backgroundRef.current) {
           const rect = backgroundRef.current.getBoundingClientRect();
           const x = event.clientX - rect.left;

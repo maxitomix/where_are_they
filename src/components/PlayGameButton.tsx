@@ -2,7 +2,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
 
-export default function PlayGameButton({onPlayClick}) {
+type PlayGameButtonProps = {
+  onPlayClick: () => void;
+};
+
+export default function PlayGameButton({onPlayClick}: PlayGameButtonProps) {
 
 
  

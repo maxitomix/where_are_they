@@ -1,6 +1,10 @@
 import  { useState, useEffect } from 'react';
 
-export default function Timer({ startTimer}) {
+interface TimerProps {
+  startTimer: boolean;
+}
+
+export default function Timer({ startTimer}: TimerProps) {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
 
