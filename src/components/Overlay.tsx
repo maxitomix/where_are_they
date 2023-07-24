@@ -1,3 +1,4 @@
+import { faL } from "@fortawesome/free-solid-svg-icons";
 import HighScores from "./Highscores";
 import ModalClickCheck from "./ModalClickCheck";
 import ModalInstructions from "./ModalInstructions";
@@ -13,8 +14,13 @@ type OverlayProps = {
 
 export default function Overlay({clickPosition, resetClickPosition}:OverlayProps) {
 
-  // Create a piece of state to track whether the game is being played
-  const [isPlaying, setIsPlaying] = useState(false);
+// winning conditions
+const [isFound1, setIsFound1] = useState(false);
+const [isFound2, setIsFound2] = useState(false);
+const [isFound3, setIsFound3] = useState(false);
+
+// Create a piece of state to track whether the game is being played
+const [isPlaying, setIsPlaying] = useState(false);
 
 // modal with instructions
   const [showModal, setShowModal] = useState(false); 
@@ -39,6 +45,9 @@ export default function Overlay({clickPosition, resetClickPosition}:OverlayProps
     setStartTimer(false)
     setShowClickCheckModal(false);
     setIsModalOpen(false); 
+    setIsFound1(false);
+    setIsFound2(false);
+    setIsFound3(false);
   }
 
   const closeModalAndStartTimer = () => {
@@ -67,11 +76,22 @@ export default function Overlay({clickPosition, resetClickPosition}:OverlayProps
   return (
 
     <div className={`flex flex-col w-screen backdrop-blur-sm fixed top-0 left-0 ${isPlaying ? '' : 'h-screen'}`}>
-      <NavBar isPlaying={isPlaying} onLogoClick={restartGame} startTimer={startTimer}/>
+      <NavBar isFound1={isFound1}  isFound2={isFound2} isFound3={isFound3}  isPlaying={isPlaying} onLogoClick={restartGame} startTimer={startTimer}/>
       {!isPlaying && <HighScores />}
       {!isPlaying && <PlayGameButton onPlayClick={toggleIsPlaying}/>}
       {showModal && <ModalInstructions onClose={closeModalAndStartTimer} resetClickPosition={resetClickPosition}/>}
-      {showClickCheckModal && <ModalClickCheck onClose={closeClickCheckModal} resetClickPosition={resetClickPosition} clickPosition={clickPosition}/>}
+      {showClickCheckModal &&
+       <ModalClickCheck 
+       onClose={closeClickCheckModal} 
+       resetClickPosition={resetClickPosition} 
+       clickPosition={clickPosition} 
+       isFound1={isFound1}  
+       isFound2={isFound2} 
+       isFound3={isFound3}
+       setIsFound1={setIsFound1} 
+       setIsFound2={setIsFound2} 
+       setIsFound3={setIsFound3} 
+       />}
     </div>
 
   );

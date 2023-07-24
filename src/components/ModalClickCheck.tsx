@@ -7,9 +7,19 @@ type ModalClickCheckProps = {
   onClose: () => void;
   resetClickPosition: () => void;
   clickPosition: { x: number, y: number } |null| undefined;
+  isFound1: boolean;
+  setIsFound1: (found: boolean) => void;
+  isFound2: boolean;
+  setIsFound2: (found: boolean) => void;
+  isFound3: boolean;
+  setIsFound3: (found: boolean) => void;
 };
 
-export default function ModalClickCheck({onClose, resetClickPosition, clickPosition}: ModalClickCheckProps) {
+export default function ModalClickCheck({
+  onClose, resetClickPosition, clickPosition, 
+  isFound1,  isFound2, isFound3,
+  setIsFound1, setIsFound2, setIsFound3
+}: ModalClickCheckProps) {
 
   const handleContinue = (e: React.MouseEvent) => {
     e.stopPropagation()
@@ -17,8 +27,8 @@ export default function ModalClickCheck({onClose, resetClickPosition, clickPosit
     resetClickPosition();
   }
 
-  const checkPosition = (image: string) => {
-  
+  const checkPosition = (image: string, e: React.MouseEvent) => {
+  e.stopPropagation()
   let clickX, clickY;
   if (clickPosition) {
     ({ x: clickX, y: clickY } = clickPosition);
@@ -35,6 +45,19 @@ export default function ModalClickCheck({onClose, resetClickPosition, clickPosit
   
     if (foundImage) {
       console.log(`You found the image: ${foundImage.image}`);
+      switch(foundImage.image) {
+        case "find1":
+          setIsFound1(true);
+          break;
+        case "find2":
+          setIsFound2(true);
+          break;
+        case "find3":
+          setIsFound3(true);
+          break;
+        default:
+          break;
+      }
     } else {
       console.log('No image found at this position');
     }
@@ -53,16 +76,16 @@ export default function ModalClickCheck({onClose, resetClickPosition, clickPosit
 
               <div className="flex justify-between m-4">
                 <div 
-                onClick={() => checkPosition('find1')}
-                className="bg-contain bg-center h-16 w-16 border-red-900 border-4 sm:border-8" style={{  backgroundImage: `url(${find1})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></div>
+                onClick={(e) => checkPosition('find1', e)}
+                className={`bg-contain bg-center h-16 w-16  border-4 sm:border-8 ${ isFound1?  "border-green-900" : "border-red-900"}`} style={{  backgroundImage: `url(${find1})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></div>
 
                 <div 
-                onClick={() => checkPosition('find2')}
-                className="bg-contain bg-center h-16 w-16 border-red-900 border-4 sm:border-8" style={{  backgroundImage: `url(${find2})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></div>
+                onClick={(e) => checkPosition('find2', e)}
+                className={`bg-contain bg-center h-16 w-16  border-4 sm:border-8 ${ isFound2?  "border-green-900" : "border-red-900"}`} style={{  backgroundImage: `url(${find2})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></div>
 
                 <div 
-                onClick={() => checkPosition('find3')}
-                className="bg-contain bg-center h-16 w-16 border-red-900 border-4 sm:border-8" style={{  backgroundImage: `url(${find3})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></div>
+                onClick={(e) => checkPosition('find3', e)}
+                className={`bg-contain bg-center h-16 w-16  border-4 sm:border-8 ${ isFound3?  "border-green-900" : "border-red-900"}`} style={{  backgroundImage: `url(${find3})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></div>
               </div>
 
               <button 

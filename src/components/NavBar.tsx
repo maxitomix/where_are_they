@@ -11,7 +11,7 @@ type NavBarProps = {
   
 };
 
-export default function NavBar({onLogoClick, isPlaying, startTimer}:NavBarProps) {
+export default function NavBar({onLogoClick, isPlaying, startTimer, isFound1, isFound2, isFound3}:NavBarProps) {
 
 
  
@@ -33,7 +33,7 @@ export default function NavBar({onLogoClick, isPlaying, startTimer}:NavBarProps)
         {isPlaying ? 
         <>
        
-        <Roster />
+        <Roster isFound1={isFound1} isFound2={isFound2} isFound3={isFound3}/>
         </>
 
         :
