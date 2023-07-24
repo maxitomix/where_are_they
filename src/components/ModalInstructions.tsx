@@ -2,12 +2,12 @@ import find1 from '../assets/find1.jpg';
 import find2 from '../assets/find2.jpg';
 import find3 from '../assets/find3.jpg';
 
-type ModalPropsProps = {
+type ModalProps = {
   onClose: () => void;
   resetClickPosition: () => void;
 };
 
-export default function ModalInstructions({ onClose, resetClickPosition }:ModalPropsProps) {
+export default function ModalInstructions({ onClose, resetClickPosition }:ModalProps) {
 
   const handleContinue = (e: React.MouseEvent) => {
     e.stopPropagation();

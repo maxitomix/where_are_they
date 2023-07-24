@@ -2,6 +2,7 @@
 import HighScores from "./Highscores";
 import ModalClickCheck from "./ModalClickCheck";
 import ModalInstructions from "./ModalInstructions";
+import ModalWin from "./ModalWin";
 import NavBar from "./NavBar";
 import PlayGameButton from "./PlayGameButton";
 import { useState, useEffect } from "react";
@@ -92,6 +93,7 @@ const [isPlaying, setIsPlaying] = useState(false);
        setIsFound2={setIsFound2} 
        setIsFound3={setIsFound3} 
        />}
+       {isFound1 && isFound2 && isFound3 && <ModalWin onClose={restartGame} resetClickPosition={resetClickPosition}  />}
     </div>
 
   );
