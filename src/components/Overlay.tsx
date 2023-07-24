@@ -71,7 +71,7 @@ export default function Overlay({clickPosition, resetClickPosition}:OverlayProps
       {!isPlaying && <HighScores />}
       {!isPlaying && <PlayGameButton onPlayClick={toggleIsPlaying}/>}
       {showModal && <ModalInstructions onClose={closeModalAndStartTimer} resetClickPosition={resetClickPosition}/>}
-      {showClickCheckModal && <ModalClickCheck onClose={closeClickCheckModal} resetClickPosition={resetClickPosition}/>}
+      {showClickCheckModal && <ModalClickCheck onClose={closeClickCheckModal} resetClickPosition={resetClickPosition} clickPosition={clickPosition}/>}
     </div>
 
   );
