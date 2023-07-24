@@ -9,6 +9,7 @@ import { useState } from "react";
 
 function App() {
 
+
   type Position = { x: number, y: number } | undefined | null;
 
   const [clickPosition, setClickPosition] = useState<Position>();
