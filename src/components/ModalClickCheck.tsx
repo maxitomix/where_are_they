@@ -13,6 +13,7 @@ type ModalClickCheckProps = {
   setIsFound2: (found: boolean) => void;
   isFound3: boolean;
   setIsFound3: (found: boolean) => void;
+
 };
 
 export default function ModalClickCheck({
@@ -29,7 +30,8 @@ export default function ModalClickCheck({
 
   const checkPosition = (image: string, e: React.MouseEvent) => {
   e.stopPropagation()
-  let clickX, clickY;
+  let clickX = -1;
+  let clickY = -1;
   if (clickPosition) {
     ({ x: clickX, y: clickY } = clickPosition);
   }

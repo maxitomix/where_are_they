@@ -9,6 +9,12 @@ type NavBarProps = {
   isPlaying:boolean;
   startTimer: boolean;
   
+  isFound1: boolean;
+
+  isFound2: boolean;
+
+  isFound3: boolean;
+
 };
 
 export default function NavBar({onLogoClick, isPlaying, startTimer, isFound1, isFound2, isFound3}:NavBarProps) {

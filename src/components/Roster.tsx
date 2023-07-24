@@ -2,8 +2,17 @@ import find1 from '../assets/find1.jpg';
 import find2 from '../assets/find2.jpg';
 import find3 from '../assets/find3.jpg';
 
+type RosterProps = {
 
-export default function Roster({isFound1, isFound2, isFound3}) {
+  isFound1: boolean;
+
+  isFound2: boolean;
+
+  isFound3: boolean;
+
+};
+
+export default function Roster({isFound1, isFound2, isFound3}:RosterProps) {
 
 
  

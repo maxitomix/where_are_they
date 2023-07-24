@@ -1,4 +1,4 @@
-import { faL } from "@fortawesome/free-solid-svg-icons";
+
 import HighScores from "./Highscores";
 import ModalClickCheck from "./ModalClickCheck";
 import ModalInstructions from "./ModalInstructions";
