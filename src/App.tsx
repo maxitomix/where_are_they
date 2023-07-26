@@ -1,10 +1,13 @@
 
 import './App.css'
-import {app} from "./services/firebase";
+
 import mainImage from "./assets/characters.jpg"
 import Overlay from './components/Overlay';
 import { useRef } from 'react';
 import { useState } from "react";
+
+import {app} from "./services/firebase";
+
 
 
 function App() {
@@ -32,6 +35,9 @@ function App() {
   const resetClickPosition = () => {
     setClickPosition(null);
   }
+
+
+
 
   return (
 

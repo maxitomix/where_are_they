@@ -8,16 +8,14 @@ type NavBarProps = {
   onLogoClick: () => void;
   isPlaying:boolean;
   startTimer: boolean;
-  
   isFound1: boolean;
-
   isFound2: boolean;
-
   isFound3: boolean;
+
 
 };
 
-export default function NavBar({onLogoClick, isPlaying, startTimer, isFound1, isFound2, isFound3}:NavBarProps) {
+export default function NavBar({onLogoClick, isPlaying, startTimer, isFound1, isFound2, isFound3, isUser}:NavBarProps) {
 
 
  
@@ -43,8 +41,10 @@ export default function NavBar({onLogoClick, isPlaying, startTimer, isFound1, is
         </>
 
         :
-        
-        <img className={`object-scale-down h-12 sm:h-16 place-self-center `} src={userIcon} alt="searchIcon" />
+        <div className="flex-col ">
+          <img className={`object-scale-down h-10 sm:h-16 `} src={userIcon} alt="searchIcon" />
+          <p className="text-light-blue-800 font-bold bg-pink-100 rounded-lg bg-opacity-75 py-.5 px-1.5 text-sm ">{isUser}</p>
+        </div>
        }
 
       </div>

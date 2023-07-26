@@ -6,6 +6,15 @@ import ModalWin from "./ModalWin";
 import NavBar from "./NavBar";
 import PlayGameButton from "./PlayGameButton";
 import { useState, useEffect } from "react";
+import ModalLogin from "./ModalLogIn";
+
+import {app} from "../services/firebase";
+import { auth, firestore } from '../services/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { GoogleAuthProvider , signInWithPopup} from "firebase/auth";
+
+
 
 type OverlayProps = {
   resetClickPosition: () => void;
@@ -74,26 +83,65 @@ const [isPlaying, setIsPlaying] = useState(false);
     }
   }, [startTimer, clickPosition, isModalOpen]);
  
+//------------AUTH--------------------
+
+const  [user] = useAuthState(auth)
+
+const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+const [isUser, setIsUser] = useState('Guest');
+
+const closeModalLogin= () => {
+  setIsLoggedIn(true)
+}
+
+
+async function handleLoginChoice(choice) {
+  try {
+    if (choice === 'google') {
+      console.log('google')
+      // handle Google login
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      console.log(user.displayName);
+      setIsUser(user.displayName)
+ 
+    } else if (choice === 'guest') {
+      // handle guest login
+      console.log('guest')
+      // Whatever you want to do for guest login
+
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+//------------AUTH--------------------
   return (
 
     <div className={`flex flex-col w-screen backdrop-blur-sm fixed top-0 left-0 ${isPlaying ? '' : 'h-screen'}`}>
-      <NavBar isFound1={isFound1}  isFound2={isFound2} isFound3={isFound3}  isPlaying={isPlaying} onLogoClick={restartGame} startTimer={startTimer}/>
-      {!isPlaying && <HighScores />}
-      {!isPlaying && <PlayGameButton onPlayClick={toggleIsPlaying}/>}
-      {showModal && <ModalInstructions onClose={closeModalAndStartTimer} resetClickPosition={resetClickPosition}/>}
-      {showClickCheckModal &&
-       <ModalClickCheck 
-       onClose={closeClickCheckModal} 
-       resetClickPosition={resetClickPosition} 
-       clickPosition={clickPosition} 
-       isFound1={isFound1}  
-       isFound2={isFound2} 
-       isFound3={isFound3}
-       setIsFound1={setIsFound1} 
-       setIsFound2={setIsFound2} 
-       setIsFound3={setIsFound3} 
-       />}
-       {isFound1 && isFound2 && isFound3 && <ModalWin onClose={restartGame} resetClickPosition={resetClickPosition}  />}
+        <NavBar isFound1={isFound1}  isFound2={isFound2} isFound3={isFound3}  isPlaying={isPlaying} onLogoClick={restartGame} startTimer={startTimer} isUser={isUser}/>
+
+        {!isLoggedIn && <ModalLogin onClose={closeModalLogin} onChoice={handleLoginChoice} />}
+
+        {!isPlaying && <HighScores />}
+        {!isPlaying && <PlayGameButton onPlayClick={toggleIsPlaying}/>}
+        {showModal && <ModalInstructions onClose={closeModalAndStartTimer} resetClickPosition={resetClickPosition}/>}
+        {showClickCheckModal &&
+        <ModalClickCheck 
+        onClose={closeClickCheckModal} 
+        resetClickPosition={resetClickPosition} 
+        clickPosition={clickPosition} 
+        isFound1={isFound1}  
+        isFound2={isFound2} 
+        isFound3={isFound3}
+        setIsFound1={setIsFound1} 
+        setIsFound2={setIsFound2} 
+        setIsFound3={setIsFound3} 
+        />}
+        {isFound1 && isFound2 && isFound3 && <ModalWin onClose={restartGame} resetClickPosition={resetClickPosition}  />}
+
     </div>
 
   );
