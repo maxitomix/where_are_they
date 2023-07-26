@@ -58,6 +58,7 @@ const [isPlaying, setIsPlaying] = useState(false);
     setIsFound1(false);
     setIsFound2(false);
     setIsFound3(false);
+    setHasWon(false);
   }
 
   const closeModalAndStartTimer = () => {
@@ -72,7 +73,13 @@ const [isPlaying, setIsPlaying] = useState(false);
     setIsModalOpen(false);
   }
 
-  
+  const [hasWon, setHasWon] = useState(false);
+
+  const detectHasWon = () => {
+    setHasWon(true);
+  }
+
+
   // if timer has started and user clicked on the background,
   // show ModalClickCheck
   useEffect(() => {
@@ -82,6 +89,9 @@ const [isPlaying, setIsPlaying] = useState(false);
       console.log('useffect')
     }
   }, [startTimer, clickPosition, isModalOpen]);
+
+
+
  
 //------------AUTH--------------------
 
@@ -121,7 +131,7 @@ async function handleLoginChoice(choice) {
   return (
 
     <div className={`flex flex-col w-screen backdrop-blur-sm fixed top-0 left-0 ${isPlaying ? '' : 'h-screen'}`}>
-        <NavBar isFound1={isFound1}  isFound2={isFound2} isFound3={isFound3}  isPlaying={isPlaying} onLogoClick={restartGame} startTimer={startTimer} isUser={isUser}/>
+        <NavBar isFound1={isFound1}  isFound2={isFound2} isFound3={isFound3}  isPlaying={isPlaying} onLogoClick={restartGame} startTimer={startTimer} isUser={isUser} hasWon={hasWon}/>
 
         {!isLoggedIn && <ModalLogin onClose={closeModalLogin} onChoice={handleLoginChoice} />}
 
@@ -140,7 +150,7 @@ async function handleLoginChoice(choice) {
         setIsFound2={setIsFound2} 
         setIsFound3={setIsFound3} 
         />}
-        {isFound1 && isFound2 && isFound3 && <ModalWin onClose={restartGame} resetClickPosition={resetClickPosition}  />}
+        {isFound1 && isFound2 && isFound3 && <ModalWin onClose={restartGame} resetClickPosition={resetClickPosition} onWin={detectHasWon} />}
 
     </div>
 

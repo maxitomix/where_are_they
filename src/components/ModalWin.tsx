@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import find1 from '../assets/find1.jpg';
 import find2 from '../assets/find2.jpg';
 import find3 from '../assets/find3.jpg';
@@ -7,7 +8,7 @@ type ModalWinProps = {
   resetClickPosition: () => void;
 };
 
-export default function ModalWin({ onClose, resetClickPosition }:ModalWinProps) {
+export default function ModalWin({ onClose, resetClickPosition, onWin }:ModalWinProps) {
 
   const handleContinue = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -15,6 +16,19 @@ export default function ModalWin({ onClose, resetClickPosition }:ModalWinProps) 
     resetClickPosition();
   }
  
+  // Retrieve the time from localStorage
+  const totalSeconds = JSON.parse(localStorage.getItem('timer') || '0');
+
+  // Calculate minutes and seconds
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+
+  useEffect(() => {
+    // This code will be executed when the component is first rendered
+    onWin();
+
+}, []);
+
   return (
     <>
       <div className="flex gap-2 mr-4 h-screen justify-center" > 
@@ -25,6 +39,7 @@ export default function ModalWin({ onClose, resetClickPosition }:ModalWinProps) 
               <h2 className='p-2' >You WIN!</h2>
               <div className="text-left">
                 <p> Your score will be added to the leaderboard. </p>
+                {/* <p>Your time: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}</p> */}
               </div>
 
               <div className="flex justify-between m-4">

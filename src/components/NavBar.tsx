@@ -15,7 +15,7 @@ type NavBarProps = {
 
 };
 
-export default function NavBar({onLogoClick, isPlaying, startTimer, isFound1, isFound2, isFound3, isUser}:NavBarProps) {
+export default function NavBar({onLogoClick, isPlaying, startTimer, isFound1, isFound2, isFound3, isUser, hasWon}:NavBarProps) {
 
 
  
@@ -26,7 +26,7 @@ export default function NavBar({onLogoClick, isPlaying, startTimer, isFound1, is
         <img className='  h-16 w-16 sm:h-16 sm:w-16 place-self-center' src={searchIcon} alt="searchIcon" onClick={onLogoClick}/>
 
         {isPlaying ? 
-         <Timer startTimer={startTimer} />
+         <Timer startTimer={startTimer} hasWon={hasWon} />
         :
         <h1 className={` mx-auto place-self-center  text-pink-500 font text-sm sm:text-3xl font-black bg-pink-100 bg-opacity-75 px-5 py-1 rounded-full shadow-lg`}
         >WHERE ARE THEY??</h1>
