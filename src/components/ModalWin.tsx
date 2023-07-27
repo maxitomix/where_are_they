@@ -1,17 +1,40 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import find1 from '../assets/find1.jpg';
 import find2 from '../assets/find2.jpg';
 import find3 from '../assets/find3.jpg';
+import { collection, addDoc } from 'firebase/firestore'; 
+import { db } from '../services/firebase';
 
 type ModalWinProps = {
   onClose: () => void;
   resetClickPosition: () => void;
 };
 
-export default function ModalWin({ onClose, resetClickPosition, onWin }:ModalWinProps) {
+
+
+const writeWinningScore = async (username, time) => {
+  try {
+    const docRef = await addDoc(collection(db, "scoresTableFirestore"), {
+      displayName: username,
+      time: time,
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
+
+
+
+export default function ModalWin({ onClose, resetClickPosition, onWin, user }:ModalWinProps) {
+
+
+    
+  
 
   const handleContinue = (e: React.MouseEvent) => {
     e.stopPropagation();
+    writeWinningScore(user.displayName, totalSeconds);
     onClose();
     resetClickPosition();
   }

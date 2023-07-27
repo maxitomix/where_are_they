@@ -51,14 +51,22 @@ export default function ReadScoresData() {
           </tr>
         </thead>
         <tbody className='grid justify-evenly gap-1 gap-x-8'>
-
+{/* 
          {scoresData.map((score, index) => (
             <tr key={index} className='flex justify-evenly gap-1 gap-x-8'>
               <td>{score.displayName}</td>
               <td>{formatTime(score.time)}</td>
             </tr>
-          ))}
+          ))} */}
 
+        {[...scoresData]
+          .sort((a, b) => a.time - b.time)
+          .map((score, index) => (
+            <tr key={index} className='flex justify-evenly gap-1 gap-x-8'>
+              <td>{score.displayName}</td>
+              <td>{formatTime(score.time)}</td>
+            </tr>
+        ))}
 
 
         </tbody>

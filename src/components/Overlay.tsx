@@ -13,13 +13,16 @@ import { auth, firestore } from '../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { GoogleAuthProvider , signInWithPopup} from "firebase/auth";
-
+import { collection, addDoc } from 'firebase/firestore'; 
+import { db } from '../services/firebase';
 
 
 type OverlayProps = {
   resetClickPosition: () => void;
   clickPosition: { x: number, y: number } |null| undefined;
 };
+
+
 
 
 export default function Overlay({clickPosition, resetClickPosition}:OverlayProps) {
@@ -59,6 +62,7 @@ const [isPlaying, setIsPlaying] = useState(false);
     setIsFound2(false);
     setIsFound3(false);
     setHasWon(false);
+ 
   }
 
   const closeModalAndStartTimer = () => {
@@ -77,7 +81,9 @@ const [isPlaying, setIsPlaying] = useState(false);
 
   const detectHasWon = () => {
     setHasWon(true);
+
   }
+
 
 
   // if timer has started and user clicked on the background,
@@ -150,7 +156,7 @@ async function handleLoginChoice(choice) {
         setIsFound2={setIsFound2} 
         setIsFound3={setIsFound3} 
         />}
-        {isFound1 && isFound2 && isFound3 && <ModalWin onClose={restartGame} resetClickPosition={resetClickPosition} onWin={detectHasWon} />}
+        {isFound1 && isFound2 && isFound3 && <ModalWin onClose={restartGame} resetClickPosition={resetClickPosition} onWin={detectHasWon} user={user} />}
 
     </div>
 

@@ -16,7 +16,7 @@ export default function PlayGameButton({onPlayClick}: PlayGameButtonProps) {
 
     <>
 
-    <button className='self-center h-36 w-60 bg-green-200 rounded'
+    <button className='self-center h-36 w-60 bg-green-200 rounded m-4 mb-6'
       onClick={onPlayClick}>
         
       <FontAwesomeIcon icon={faCirclePlay} size="5x" className='text-blue-500'/> 
