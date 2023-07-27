@@ -10,12 +10,10 @@ type ModalWinProps = {
   resetClickPosition: () => void;
 };
 
-
-
 const writeWinningScore = async (username, time) => {
   try {
     const docRef = await addDoc(collection(db, "scoresTableFirestore"), {
-      displayName: username,
+      displayName: username || 'Guest',
       time: time,
     });
     console.log("Document written with ID: ", docRef.id);
@@ -24,20 +22,23 @@ const writeWinningScore = async (username, time) => {
   }
 };
 
-
-
 export default function ModalWin({ onClose, resetClickPosition, onWin, user }:ModalWinProps) {
 
 
-    
-  
+  // const handleContinue = (e: React.MouseEvent) => {
+  //   e.stopPropagation();
+  //   writeWinningScore(user.displayName, totalSeconds)
+  //   onClose();
+  //   resetClickPosition();
+  // }
 
   const handleContinue = (e: React.MouseEvent) => {
     e.stopPropagation();
-    writeWinningScore(user.displayName, totalSeconds);
+    writeWinningScore((user===null ? 'Guest': user.displayName), totalSeconds)
     onClose();
     resetClickPosition();
   }
+
  
   // Retrieve the time from localStorage
   const totalSeconds = JSON.parse(localStorage.getItem('timer') || '0');
@@ -48,6 +49,7 @@ export default function ModalWin({ onClose, resetClickPosition, onWin, user }:Mo
 
   useEffect(() => {
     // This code will be executed when the component is first rendered
+     console.log(user) 
     onWin();
 
 }, []);

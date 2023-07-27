@@ -12,9 +12,10 @@ import {app} from "../services/firebase";
 import { auth, firestore } from '../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { GoogleAuthProvider , signInWithPopup} from "firebase/auth";
+import { GoogleAuthProvider , signInWithPopup, signOut, signInAnonymously } from "firebase/auth";
 import { collection, addDoc } from 'firebase/firestore'; 
 import { db } from '../services/firebase';
+
 
 
 type OverlayProps = {
@@ -105,7 +106,7 @@ const  [user] = useAuthState(auth)
 
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-const [isUser, setIsUser] = useState('Guest');
+const [isUser, setIsUser] = useState(null);
 
 const closeModalLogin= () => {
   setIsLoggedIn(true)
@@ -114,19 +115,19 @@ const closeModalLogin= () => {
 
 async function handleLoginChoice(choice) {
   try {
+    signOut(auth); // Signing out from any previous session
+
     if (choice === 'google') {
-      console.log('google')
+      console.log('google');
       // handle Google login
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-      console.log(user.displayName);
-      setIsUser(user.displayName)
- 
+      const result = await signInWithPopup(auth, provider);
+      setIsUser(result.user.displayName);
     } else if (choice === 'guest') {
       // handle guest login
-      console.log('guest')
-      // Whatever you want to do for guest login
-
+      console.log('guest');
+      await signInAnonymously(auth);
+      setIsUser('Guest');
     }
   } catch (error) {
     console.error(error);
