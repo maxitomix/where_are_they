@@ -2,43 +2,43 @@
   "scores": [
     {
       "username": "user1",
-      "time": "2023-07-18T00:01:00Z"
+      "time": "60"
     },
     {
       "username": "user2",
-      "time": "2023-07-18T00:02:00Z"
+      "time": "120"
     },
     {
       "username": "user3",
-      "time": "2023-07-18T00:03:00Z"
+      "time": "200"
     },
     {
       "username": "user4",
-      "time": "2023-07-18T00:04:00Z"
+      "time": "400"
     },
     {
       "username": "user5",
-      "time": "2023-07-18T00:05:00Z"
+      "time": "100"
     },
     {
       "username": "user6",
-      "time": "2023-07-18T00:01:30Z"
+      "time": "120"
     },
     {
       "username": "user7",
-      "time": "2023-07-18T00:02:30Z"
+      "time": "320"
     },
     {
       "username": "user8",
-      "time": "2023-07-18T00:03:30Z"
+      "time": "260"
     },
     {
       "username": "user9",
-      "time": "2023-07-18T00:04:30Z"
+      "time": "222"
     },
     {
       "username": "user10",
-      "time": "2023-07-18T00:05:30Z"
+      "time": "333"
     }
   ]
 }
