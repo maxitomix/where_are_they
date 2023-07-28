@@ -1,8 +1,11 @@
 
+type ModalLoginProps = {
+  onClose: () => void;
+  onChoice: (choice: string) => void; // replace `void` with the type you are expecting if it's not void
+};
 
 
-
-export default function ModalLogin( { onClose, onChoice }) {
+export default function ModalLogin( {onClose, onChoice} : ModalLoginProps ) {
 
   const onGoogleChoice = () => {
     onChoice('google');  // communicate the choice to parent

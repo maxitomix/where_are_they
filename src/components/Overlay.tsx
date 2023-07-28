@@ -8,13 +8,13 @@ import PlayGameButton from "./PlayGameButton";
 import { useState, useEffect } from "react";
 import ModalLogin from "./ModalLogIn";
 
-import {app} from "../services/firebase";
-import { auth, firestore } from '../services/firebase';
+// import {app} from "../services/firebase";
+import { auth } from '../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+// import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { GoogleAuthProvider , signInWithPopup, signOut, signInAnonymously } from "firebase/auth";
-import { collection, addDoc } from 'firebase/firestore'; 
-import { db } from '../services/firebase';
+// import { collection, addDoc } from 'firebase/firestore'; 
+// import { db } from '../services/firebase';
 
 
 
@@ -106,14 +106,14 @@ const  [user] = useAuthState(auth)
 
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-const [isUser, setIsUser] = useState(null);
+const [isUser, setIsUser] = useState<string | null>(null);
 
 const closeModalLogin= () => {
   setIsLoggedIn(true)
 }
 
 
-async function handleLoginChoice(choice) {
+async function handleLoginChoice(choice : string) {
   try {
     signOut(auth); // Signing out from any previous session
 
@@ -157,7 +157,7 @@ async function handleLoginChoice(choice) {
         setIsFound2={setIsFound2} 
         setIsFound3={setIsFound3} 
         />}
-        {isFound1 && isFound2 && isFound3 && <ModalWin onClose={restartGame} resetClickPosition={resetClickPosition} onWin={detectHasWon} user={user} />}
+        {isFound1 && isFound2 && isFound3 && <ModalWin onClose={restartGame} resetClickPosition={resetClickPosition} onWin={detectHasWon} user={user || null} />}
 
     </div>
 

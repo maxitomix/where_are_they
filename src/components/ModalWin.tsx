@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import find1 from '../assets/find1.jpg';
 import find2 from '../assets/find2.jpg';
 import find3 from '../assets/find3.jpg';
@@ -8,9 +8,21 @@ import { db } from '../services/firebase';
 type ModalWinProps = {
   onClose: () => void;
   resetClickPosition: () => void;
+  onWin: () => void;
+  user: User | null;
 };
 
-const writeWinningScore = async (username, time) => {
+type User = {
+  displayName: string | null;
+  // any other properties that a user might have
+};
+
+type writeWinningScoreProps = {
+  username : string;
+  time : number;
+};
+
+const writeWinningScore = async ({username, time} : writeWinningScoreProps) => {
   try {
     const docRef = await addDoc(collection(db, "scoresTableFirestore"), {
       displayName: username || 'Guest',
@@ -34,7 +46,14 @@ export default function ModalWin({ onClose, resetClickPosition, onWin, user }:Mo
 
   const handleContinue = (e: React.MouseEvent) => {
     e.stopPropagation();
-    writeWinningScore((user===null ? 'Guest': user.displayName), totalSeconds)
+    // writeWinningScore((user===null ? 'Guest': user.displayName), totalSeconds);
+    // writeWinningScore({
+    //   username: (user===null ? 'Guest': user.displayName),
+    //   time: totalSeconds});
+    writeWinningScore({
+      username: user?.displayName || 'Guest',
+      time: totalSeconds
+    });  
     onClose();
     resetClickPosition();
   }
@@ -43,9 +62,6 @@ export default function ModalWin({ onClose, resetClickPosition, onWin, user }:Mo
   // Retrieve the time from localStorage
   const totalSeconds = JSON.parse(localStorage.getItem('timer') || '0');
 
-  // Calculate minutes and seconds
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
 
   useEffect(() => {
     // This code will be executed when the component is first rendered

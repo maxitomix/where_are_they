@@ -5,13 +5,14 @@ import Timer from './Timer';
 
 
 type NavBarProps = {
-  onLogoClick: () => void;
-  isPlaying:boolean;
-  startTimer: boolean;
   isFound1: boolean;
   isFound2: boolean;
   isFound3: boolean;
-
+  isPlaying: boolean;
+  onLogoClick: () => void;
+  startTimer: boolean;
+  isUser: string | null; // add this line
+  hasWon: boolean;
 
 };
 
